@@ -359,17 +359,6 @@ button:hover {
     }
 
 
-
-
-
-@media (min-width: 480px) {
-    #page-account {
-        padding-top: 480px;
-    }
-    #page-header {
-        top: 480px;
-    }
-}
 #page-account {
 	padding-top: 536px;
 	padding-bottom: 0px;
@@ -495,10 +484,14 @@ button:hover {
 #page-multi .container > div > span > button,
 #page-direct .container > div > span > button {
 	position: absolute;
-	top: 40%;
-	left: 50%;
-	margin-left: -140px;
-	width: 280px;
+    top: 40%;
+    left: 50%;
+    margin-left: -60px;
+    margin-top: -20px;
+    font-size: 12px;
+    width: 140px;
+    padding: 4px 8px;
+    line-height: 32px;
 }
 
 
@@ -512,14 +505,65 @@ button:hover {
 }
 
 
+#page-multi > div > .info,
+#page-direct > div > .info {
+    text-align: left;
+    width: auto;
+}
+#page-multi > div > .info h1,
+#page-direct > div > .info h1 {
+    font-size: 24px;
+}
+#page-multi > div > .info table,
+#page-direct > div > .info table {
+    height: auto;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: 480px !important;
+    margin: 16px 0;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 16px;
+    padding: 8px;
+}
+#page-multi > div > .info table tr:first-child td:first-child,
+#page-direct > div > .info table tr:first-child td:first-child {
+    text-align: center !important;
+}
+#page-multi > div > .info table td:first-child,
+#page-direct > div > .info table td:first-child {
+    text-align: right !important;
+    padding-right: 8px;
+}
+
+#page-multi > div > .info table td:nth-child(2),
+#page-direct > div > .info table td:nth-child(2) {
+    text-align: left !important;
+}
+#page-multi > div > .info table td,
+#page-direct > div > .info table td {
+    width: calc(100%/2) !important;
+    min-width: calc(100%/2) !important;
+    max-width: calc(100%/2) !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    background: none !important;
+}
+#page-multi > div > .info table img,
+#page-direct > div > .info table img {
+    max-height: 30px;
+    vertical-align: bottom;
+}
+
 #page-multi,
 #page-direct {
-	/*background-image: url("../img/header-small.png");*/
+	/*background-image: url("../img/header-small.png");
 	background-size: 10%;
 	background-position: bottom right;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
-	padding: 96px 16px 16px 16px;
+	background-attachment: fixed;*/
+	padding: 72px 16px 16px 16px;
     z-index: 5;
 }
 
@@ -701,3 +745,20 @@ button:hover {
             max-width: 130px;
         }
     }
+    
+    
+
+
+
+
+@media (min-width: 480px) {
+    #page-account {
+        padding-top: 480px;
+    }
+    #page-header {
+        top: 480px;
+    }
+    #page-matrix {
+        
+    }
+}

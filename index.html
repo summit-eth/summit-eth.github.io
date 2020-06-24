@@ -12,34 +12,35 @@
 <meta property="og:image:width" content="600px">
 <meta property="og:image:height" content="314px">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/bundle.css?ver=0.2">
-<link rel="stylesheet" href="css/jquery.toast.min.css?ver=0.2">
-<link rel="stylesheet" href="fonts/fonts.css?ver=0.2">
+<link rel="stylesheet" href="css/bundle.css?ver=0.3">
+<link rel="stylesheet" href="css/jquery.toast.min.css?ver=0.3">
+<link rel="stylesheet" href="fonts/fonts.css?ver=0.3">
 <script src="js/jquery.min.js"></script>
 </head>
 <body>
 <div id="crypto-info">
-    BTC/USD: <span id="infBTC">10,200</span>$ | ETH/USD: <span id="infETH">300</span>$ | ETH/PHP: <span id="infPHP">11,230</span>PHP
+    BTC/USD: <span id="infBTC">...</span>$ | ETH/USD: <span id="infETH">...</span>$
 </div>
 <div id="page-landing">
     <div class="container centered">
         <img class="landing-logo" src="img/logo-transparent.png">
         <img class="landing-header" src="img/header.png">
         <div class="form hide" id="regDiv">
-            <h3>your referrer:</h3>
-            <input id="inpReferrer" type="text" value="..." readonly>
+            <h3>your referrer: please double check!</h3>
+            <input id="inpReferrer" type="text" value="">
         </div>
         <button id="btnConnect">connect wallet</button>
+        <button id="btnVerify">Verify referrer</button>
         <button id="btnReg">Join (0.04 ETH)</button>
         <button id="btnHow">How to join?</button>
-        <hr style="border-color: #121212; margin: 8px 16px">
+        <hr style="max-width: 300px; margin: 16px auto">
         <button id="btnViewFaq">FAQs</button>
         <button id="btnViewGuides">Guide</button>
         <div id="page-footer">
             SummitETH is a smart contract running on the decentralized Ethereum network and does not belong to any individual person or business enterprise.
-            The site administrators DO NOT own the SummitETH project and have no technical or any other means of access to user funds which are ALWAYS sent direct to users wallets P2P (Person 2 Person).
+            The site administrators DO NOT own the SummitETH project.
             <br>
-            &copy; SummitETH 2020
+            <b style="font-weight: 700">&copy; http://Summit-ETH.com 2020</b>
         </div>
     </div>
 </div>
@@ -253,10 +254,37 @@
     
     <div id="page-matrix">
         <div id="page-direct">
-            <div class="container centered"></div>
+            <div class="container centered">
+                <div class="info">
+                    <h1> Direct Matrix</h1>
+                    <table>
+                        <tr><td colspan="2">Quick Guide:</td></tr>
+                        <tr><td><img src="img/guide/superior.png"></td><td>the ID of your superior</td></tr>
+                        <tr><td><img src="img/guide/eth-earned.png"></td><td>total ETH earned for the current level</td></tr>
+                        <tr><td><img src="img/guide/direct-downlines.png"></td><td>2 slots for your invites</td></tr>
+                        <tr><td><img src="img/guide/direct-reinvest.png"></td><td>3rd slot for reinvestment</td></tr>
+                    </table>
+                </div>
+                <br><br>
+                <hr>
+            </div>
         </div>    
         <div id="page-multi">
-            <div class="container centered"></div>
+            <div class="container centered">
+                <div class="info">
+                    <h1> Multilevel Matrix</h1>
+                    <table>
+                        <tr><td colspan="2">Quick Guide:</td></tr>
+                        <tr><td><img src="img/guide/superior.png"></td><td>the ID of your superior</td></tr>
+                        <tr><td><img src="img/guide/eth-earned.png"></td><td>total ETH earned for the current level</td></tr>
+                        <tr><td><img src="img/guide/multi-level1.png"></td><td>2 slots for your invites/spills. you cannot earn from these slots</td></tr>
+                        <tr><td><img src="img/guide/multi-level2.png"></td><td>3 slots for your invites/spills. you will earn from these slots!</td></tr>
+                        <tr><td><img src="img/guide/direct-reinvest.png"></td><td>4th slot for reinvestment</td></tr>
+                    </table>
+                </div>
+                <br><br>
+                <hr>
+            </div>
         </div>
     </div>
     
@@ -268,7 +296,7 @@
 <script src="js/js.cookie.min.js"></script>
 <script src="js/jquery.toast.min.js"></script>
 <script src="js/bignumber.min.js"></script>
-<script src="js/summit.abi.js?ver=0.2"></script>
-<script src="js/summit.js?ver=0.2"></script>
+<script src="js/summit.abi.js?ver=0.3"></script>
+<script src="js/summit.js?ver=0.3"></script>
 </body>
 </html>

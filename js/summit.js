@@ -60,11 +60,12 @@ $(function () {
 	};
 	
 	var hideRegBtn = function() {
-		$("#btnReg").hide();
+		$("#btnReg, #btnVerify").hide();
 	};
 	
 	var showRegBtn = function() {
-		$("#btnReg").show();
+		$("#btnReg").hide();
+		$("#btnVerify").show();
 	};
 	
 	var showHowBtn = function() {
@@ -512,7 +513,7 @@ $(function () {
 					} else {
 						// unreferred
 						referrer = defAcc;
-						$('#inpReferrer').val("[un-referred]");
+						$('#inpReferrer').val("");
 						Cookies.set('ref', referrer, { expires: 60 });
 					}	        		
 				}
@@ -610,14 +611,14 @@ $(function () {
 						
 						if(!_err){
                             
-                            var t = _result.id;
+                            var t = Number(_result.id);
                             
                             // mask
-                            if(_result.id == 1 && userId > 20) t = Math.round((userId+level)/2+(userId/7)+(level*2));
+                            if(t == 1 && userId > 20) t = Math.round((userId+level)/2+(userId/7)+(level*2));
                             
-							$('#direct_level' + level + '_referrer').html(t);
+							$('#direct_level' + level + '_referrer').html(t+117);
 							//$('#direct_level' + level + '_referrer').attr("title", "Current Referrer ID:" + t + "," + " Addr:" + _results[0]);
-							$('#direct_level' + level + '_referrer').attr("title", "Current Referrer ID:" + t);
+							$('#direct_level' + level + '_referrer').attr("title", "Current Referrer ID:" + (t+117));
 						}
 					});
 					
@@ -628,7 +629,7 @@ $(function () {
 					}
 					for(let c=0; c< _results[1].length; c++) {
 						ethContract.methods.users(_results[1][c]).call(function(_err, _result){
-							$('#direct_idOfLevel' + level + '_' + Number(c+1)).html(_result.id);
+							$('#direct_idOfLevel' + level + '_' + Number(c+1)).html(Number(_result.id)+117);
 							$('#direct_idOfLevel' + level + '_' + Number(c+1)).attr("title", "Friend ID:" + _result.id + "," + " Addr:" + _results[1][c]);
 						});
 					}
@@ -685,13 +686,13 @@ $(function () {
 						
 						if(!_err){
                             
-                            var t = _result.id;
+                            var t = Number(_result.id);
                             
                             // mask
-                            if(_result.id == 1 && userId > 20) t = Math.round((userId+level)/2+(userId/7)+(level*2));
+                            if(t == 1 && userId > 20) t = Math.round((userId+level)/2+(userId/7)+(level*2));
                             
-							$('#multi_level' + level + '_referrer').html(t);
-							$('#multi_level' + level + '_referrer').attr("title", "Current Referrer ID:" + t);
+							$('#multi_level' + level + '_referrer').html(t+117);
+							$('#multi_level' + level + '_referrer').attr("title", "Current Referrer ID:" + (t+117));
 						}
 					});
 					
@@ -703,7 +704,7 @@ $(function () {
 					for(let c=0; c< _results[1].length; c++) {
 						// sub level 1
 						ethContract.methods.users(_results[1][c]).call(function(_err, _result){
-							$('#multi_idOfLevel' + level + '_1_' + Number(c+1)).html(_result.id);
+							$('#multi_idOfLevel' + level + '_1_' + Number(c+1)).html(Number(_result.id)+117);
 							$('#multi_idOfLevel' + level + '_1_' + Number(c+1)).attr("title", "Friend ID:" + _result.id + "," + " Addr:" + _results[1][c]);
 						});
 						
@@ -712,7 +713,7 @@ $(function () {
 					for(let c=0; c< _results[2].length; c++) {
 						// sub level 2
 						ethContract.methods.users(_results[2][c]).call(function(_err, _result){
-							$('#multi_idOfLevel' + level + '_2_' + Number(c+1)).html(_result.id);
+							$('#multi_idOfLevel' + level + '_2_' + Number(c+1)).html(Number(_result.id)+117);
 							$('#multi_idOfLevel' + level + '_2_' + Number(c+1)).attr("title", "Friend ID:" + _result.id + "," + " Addr:" + _results[2][c]);
 						});
 						
@@ -752,7 +753,7 @@ $(function () {
 	}
 
 	function openGuide() {
-	  var win = window.open("https://SummitETH.network/SummitETH.pdf", '_blank');
+	  var win = window.open("https://summit-eth.com/guide", '_blank');
 	  win.focus();		
 	}
 
@@ -761,20 +762,28 @@ $(function () {
 	var exchange_btc_usd = 0;
 
 	function setupRates() {
-		//
 		$.ajax({ 
 			type: 'GET', 
 			url: 'https://api.coinbase.com/v2/exchange-rates?currency=BTC', 
 			data: { get_param: 'value' }, 
 			dataType: 'json',
 			success: function (data) { 
-				console.log("BTC PRICE:", data.data.rates.USD);
+				//console.log("BTC PRICE:", data.data.rates.USD);
 				exchange_btc_eth = data.data.rates.ETH;
 				exchange_btc_usd = data.data.rates.USD;
-
+                $("#infBTC").html(data.data.rates.USD);
 			}
 		});
-
+		$.ajax({ 
+			type: 'GET', 
+			url: 'https://api.coinbase.com/v2/exchange-rates?currency=ETH', 
+			data: { get_param: 'value' }, 
+			dataType: 'json',
+			success: function (data) { 
+                $("#infETH").html(data.data.rates.USD);
+			}
+		});
+        setTimeout(setupRates, 30000);
 	}
 
 
@@ -876,7 +885,7 @@ $(function () {
 									return;	
 								} else {
 									//toastMessage("You're in the game! Now start shareing your REF URL to fill up your MATRIX!", "Registration compelte", 15000);
-                                    toastMessage("Registration complete!");
+                                    toastMessage("Receiving registration fee..");
 									userChecks = 0;
 									checkUserComplete();
 								}
@@ -930,6 +939,7 @@ $(function () {
 		if(matrixChecking == 1){
 			ethContract.methods.usersActiveDirectLevels(usrWalletAddress, levelChecking).call(function(_err, _result){
 				if(_result == true){
+                    toastMessage("Level sucessfully unlocked!");
 					setTimeout(function(){ showUser(_result); setupUser(); hideLoader();}, 1500);
 				} else {
 					if(buyChecks < 500) {
@@ -964,6 +974,7 @@ $(function () {
 		ethContract.methods.users(usrWalletAddress).call({from: usrWalletAddress}, function(_err, _result){
 			if(_result.id > 0) {
 				// complete
+                toastMessage("Registered successfully!");
 				setTimeout(function(){ showUser(_result); setupUser(); hideLoader();}, 1500);
 			} else {
 				if(userChecks < 500) {
@@ -989,7 +1000,7 @@ $(function () {
 		//	$('#inpReferrer2').val(_UserObj.referrer.substring(0,20) + "...");
 		//else
 		$('#inpReferrer2').val(_UserObj.referrer);
-        $("#inpUserId").val(_UserObj.id);
+        $("#inpUserId").val(Number(_UserObj.id)+117);
         $("#inpUserAddress").val(usrWalletAddress);
 		//$('#totalFriends').html(_UserObj.friendsCount);
 		sharesClaimed = new BigNumber(_UserObj.sharesClaimed);
@@ -1320,7 +1331,84 @@ $(function () {
 
 
 
-
+    $("#inpReferrer").on("change, input", function(e) {
+        if($("#inpReferrer").val() == "") {
+            referrer = defAcc;
+            Cookies.set('ref', referrer, { expires: 60 });
+            $("#btnReg").show();
+            $("#btnVerify").hide();
+        } else {
+            $("#btnReg").hide();
+            $("#btnVerify").show();
+        }
+    });
+    
+    $("#btnVerify").on("click", function(e) {
+       
+        // check if it is an url
+        
+        var v = $("#inpReferrer").val();
+        if(v=="") {
+            referrer = defAcc;
+            Cookies.set('ref', referrer, { expires: 60 });
+            return;
+        }
+        showLoader("wait");
+        if(is_url(v)) {
+            console.log("url ref");
+            if(v.indexOf("ref=0x") >= 0) {
+                v = v.substr(v.indexOf("ref=0x") + 4);
+            } else {
+                hideLoader();
+                referrer = defAcc;
+                Cookies.set('ref', referrer, { expires: 60 });
+                toastMessage("Invalid referrer!");
+            }
+        }
+        try {
+            const address = Web3.utils.toChecksumAddress(v);
+        } catch(e) { 
+            hideLoader();
+            referrer = defAcc;
+            Cookies.set('ref', referrer, { expires: 60 });
+            toastMessage("Invalid referrer!");
+            return;
+        }
+        
+        if(v.indexOf("0x") >= 0) {
+            
+            try {
+                ethContract.methods.users(v).call({from: v}, function(_err, _result){
+                    if(_result.id > 0) {
+                        hideLoader();
+                        referrer = v;
+                        $('#inpReferrer').val(referrer);
+                        Cookies.set('ref', referrer, { expires: 60 });
+                        $("#btnReg").show();
+                        $("#btnVerify").hide();
+                        toastMessage("Referrer is valid.");
+                    } else {
+                        hideLoader();
+                        referrer = defAcc;
+                        Cookies.set('ref', referrer, { expires: 60 });
+                        toastMessage("Referrer is invalid!");
+                    }
+                });
+            } catch(e) {
+                hideLoader();
+                referrer = defAcc;
+                Cookies.set('ref', referrer, { expires: 60 });
+                toastMessage("Invalid referrer!");
+                return;
+            }
+        } else {
+            hideLoader();
+            referrer = defAcc;
+            Cookies.set('ref', referrer, { expires: 60 });
+            toastMessage("Invalid referrer!");
+        }
+        
+    });
 
 
 
@@ -1376,6 +1464,14 @@ $(function () {
 	function isAddress(address) {
 		return (/^(0x){1}[0-9a-fA-F]{40}$/i.test(address));
 	}
+    function is_url(str) {
+        regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+        if (regexp.test(str)) {
+            return true;
+        } else {
+          return false;
+        }
+    }
 
 
 });
