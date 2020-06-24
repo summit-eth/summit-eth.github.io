@@ -1244,8 +1244,13 @@ $(function () {
 				withdraw();
 			}
 		});
-		$('#btnHow').click(function(){
-			openGuide();
+		$('#btnHow').click(function(){			
+            var win = window.open("http://summit-eth.com/howto", '_blank');
+            win.focus();		
+		});
+		$('#btnViewGuide, #btnViewGuides').click(function(){			
+            var win = window.open("http://summit-eth.com/guide", '_blank');
+            win.focus();		
 		});
 		$('#btnConnect').click(function(){
 			
