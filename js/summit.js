@@ -1,6 +1,10 @@
 'use strict';
 
 $(function () {
+
+	function gweiTowei(_in) {
+		return (_in * 1000000000);
+	}
 	
 	var currentPage = 1;
 	
@@ -175,7 +179,7 @@ $(function () {
 	var summitServer = (useLocal) ? "ws://127.0.0.1:8545" : "wss://ropsten.infura.io/ws/v3/8d8fc8f952d54c358dad23a1caff3be2";
 	// var summitServer = "wss://mainnet.infura.io/ws/v3/8d8fc8f952d54c358dad23a1caff3be2";
 	
-	var ethContractAddr = (useLocal) ? "0xb4c6113eb5eec093a5bea2414605dbbee5c496c0" : "0x3D9a59B078309a0612EC1D3f0786FBDF6D81a45c";
+	var ethContractAddr = (useLocal) ? "0xb4c6113eb5eec093a5bea2414605dbbee5c496c0" : "0xC21c02c514b3A41f324470b27284b561654Df735";
 	// var ethContractAddr = "";
 	
 	var defAcc = "0x9221E96fa80104162D6f5aaBB6BBDEf27bE5958f";
@@ -242,8 +246,6 @@ $(function () {
 	if(isMobileCheck.matches){
 		isMobile = true;
 	}
-    
-    var _isa = $("#inpShareAmount");
 
 
 	const isMetaMaskInstalled = () => {
@@ -833,8 +835,7 @@ $(function () {
 
 	}
 	function withdraw() {
-        var q = (_isa.attr("unlock")==undefined)?0:_isa.val();
-		ethContract.methods.claimShares(q).estimateGas({from: usrWalletAddress}, function(_err, _gasAmount){
+		ethContract.methods.claimShares().estimateGas({from: usrWalletAddress}, function(_err, _gasAmount){
 			if(_err){
 				console.log(_err);
 				toastMessage("An error occured sending your transaction - please ensure you have enough gas and try again", "Tx Failed", 15000);
@@ -842,7 +843,7 @@ $(function () {
 			} else {
 				showLoader("wait");
 
-				ethContract.methods.claimShares(q).send({from: usrWalletAddress, 
+				ethContract.methods.claimShares().send({from: usrWalletAddress, 
 					gasPrice: gweiTowei(gasPrice), 
 					gas: _gasAmount}, function(_err, result){
 							
@@ -1363,10 +1364,7 @@ $(function () {
         var v = $("#inpReferrer").val();
         if(v=="") {
             referrer = defAcc;
-            // $("#inpReferrer").val(referrer);
             Cookies.set('ref', referrer, { expires: 60 });
-            $("#btnReg").show();
-            $("#btnVerify").hide();
             return;
         }
         showLoader("wait");
@@ -1489,8 +1487,5 @@ $(function () {
         }
     }
 
-	function gweiTowei(_in) {
-		return (_in * 1000000000);
-	}
 
 });
