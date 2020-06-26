@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en-us" class="">
+<head>
+<meta charset="utf-8">
+<title>SummitETH - Matrix Browser</title>
+<base href="../">
+<link rel="shortcut icon" href="favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://summit-eth.com/browse">
+<meta property="og:title" content="SummitETH - Matrix Browser">
+<meta property="og:description" content="Browse the Summit-ETH Matrix!">
+<meta property="og:image" content="http://summit-eth.com/static/graph-02.jpg">
+<meta property="og:image:width" content="512px">
+<meta property="og:image:height" content="250px">
+<link rel="stylesheet" href="css/reset.min.css">
+<link rel="stylesheet" href="css/browser.min.css">
+<link rel="stylesheet" href="fonts/fonts.min.css?ver=1.0.0">
+<script src="js/jquery.min.js"></script>
+<script src="js/web3.min.js"></script>
+<script src="js/js.cookie.min.js"></script>
+<script src="js/jquery.toast.min.js"></script>
+<script src="js/bignumber.min.js"></script>
+<script src="js/summit.abi.js?ver=1.0.0"></script>
+</head>
+<body>
+<div id="header">
+	<div id="search">
+		<input type="text" id="inpSearch" placeholder="Input ID Number or Address"><button id="btnSearch">Go</button>
+	</div>
+</div>
+<div id="main">
+<div id="page-matrix">
+        <div id="page-direct">
+            <div class="container centered">
+            <div id="direct_level1" class="disabled">
+			<table><tbody><tr><td><span id="direct_level1_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td>
+			<td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 1</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level1_earned">-</span></h5></td></tr>
+			<tr><td><span id="direct_idOfLevel1_1">-</span> <span id="direct_idOfLevel1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span>
+			</td><td><span id="direct_refOfLevel1"><img src="img/refresh.png"></span></td></tr></tbody></table>
+			<span id="direct_level1_buy" class=""><button id="directBuyBtn_level1">UNLOCK (0.02 ETH)</button></span><hr></div>
+			<div id="direct_level2" class="disabled hide"><table><tbody><tr><td><span id="direct_level2_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td>
+			<td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 2</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level2_earned">-</span></h5></td></tr> <tr>
+			<td><span id="direct_idOfLevel2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span>
+			<span id="direct_idOfLevel2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span>
+			</td><td><span id="direct_refOfLevel2"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level2_buy" class="hide">
+			<button id="directBuyBtn_level2">UNLOCK (0.04 ETH)</button></span><hr></div><div id="direct_level3" class="disabled hide"><table><tbody>
+			<tr><td><span id="direct_level3_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span>
+			</td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 3</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level3_earned">-</span>
+			</h5></td></tr> <tr><td><span id="direct_idOfLevel3_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> 
+			<span id="direct_idOfLevel3_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>
+			<span id="direct_refOfLevel3"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level3_buy" class="hide"><button id="directBuyBtn_level3">UNLOCK (0.08 ETH)</button>
+			</span><hr></div><div id="direct_level4" class="disabled hide"><table><tbody><tr><td>
+			<span id="direct_level4_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span>
+			</td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 4</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level4_earned">-</span>
+			</h5></td></tr> <tr><td><span id="direct_idOfLevel4_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> 
+			<span id="direct_idOfLevel4_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="direct_refOfLevel4">
+			<img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level4_buy" class="hide"><button id="directBuyBtn_level4">UNLOCK (0.16 ETH)</button></span><hr>
+			</div><div id="direct_level5" class="disabled hide"><table><tbody><tr><td>
+			<span id="direct_level5_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr>
+			<tr><td colspan="2"><h3>LEVEL 5</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level5_earned">-</span></h5></td></tr> <tr><td>
+			<span id="direct_idOfLevel5_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> 
+			<span id="direct_idOfLevel5_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>
+			<span id="direct_refOfLevel5"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level5_buy" class="hide">
+			<button id="directBuyBtn_level5">UNLOCK (0.32 ETH)</button></span><hr></div><div id="direct_level6" class="disabled hide"><table><tbody><tr>
+			<td><span id="direct_level6_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td>
+			<td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 6</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level6_earned">-</span></h5>
+			</td></tr> <tr><td><span id="direct_idOfLevel6_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> 
+			<span id="direct_idOfLevel6_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>
+			<span id="direct_refOfLevel6"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level6_buy" class="hide">
+			<button id="directBuyBtn_level6">UNLOCK (0.64 ETH)</button></span><hr></div><div id="direct_level7" class="disabled hide"><table><tbody>
+			<tr><td><span id="direct_level7_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 7</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level7_earned">-</span></h5></td></tr> <tr><td><span id="direct_idOfLevel7_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> <span id="direct_idOfLevel7_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="direct_refOfLevel7"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level7_buy" class="hide"><button id="directBuyBtn_level7">UNLOCK (1.28 ETH)</button></span><hr></div><div id="direct_level8" class="disabled hide"><table><tbody><tr><td><span id="direct_level8_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 8</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level8_earned">-</span></h5></td></tr> <tr><td><span id="direct_idOfLevel8_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> <span id="direct_idOfLevel8_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="direct_refOfLevel8"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level8_buy" class="hide"><button id="directBuyBtn_level8">UNLOCK (2.56 ETH)</button></span><hr></div><div id="direct_level9" class="disabled hide"><table><tbody><tr><td><span id="direct_level9_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 9</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level9_earned">-</span></h5></td></tr> <tr><td><span id="direct_idOfLevel9_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> <span id="direct_idOfLevel9_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="direct_refOfLevel9"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level9_buy" class="hide"><button id="directBuyBtn_level9">UNLOCK (5.12 ETH)</button></span><hr></div><div id="direct_level10" class="disabled hide"><table><tbody><tr><td><span id="direct_level10_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 10</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level10_earned">-</span></h5></td></tr> <tr><td><span id="direct_idOfLevel10_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> <span id="direct_idOfLevel10_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="direct_refOfLevel10"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level10_buy" class="hide"><button id="directBuyBtn_level10">UNLOCK (10.24 ETH)</button></span><hr></div><div id="direct_level11" class="disabled hide"><table><tbody><tr><td><span id="direct_level11_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 11</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level11_earned">-</span></h5></td></tr> <tr><td><span id="direct_idOfLevel11_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> <span id="direct_idOfLevel11_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="direct_refOfLevel11"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level11_buy" class="hide"><button id="directBuyBtn_level11">UNLOCK (20.48 ETH)</button></span><hr></div><div id="direct_level12" class="disabled hide"><table><tbody><tr><td><span id="direct_level12_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 12</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level12_earned">-</span></h5></td></tr> <tr><td><span id="direct_idOfLevel12_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> <span id="direct_idOfLevel12_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="direct_refOfLevel12"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="direct_level12_buy" class="hide"><button id="directBuyBtn_level12">UNLOCK (40.96 ETH)</button></span><hr></div></div>
+        </div>    
+        <div id="page-multi">
+            <div class="container centered">
+            <div id="multi_level1" class="disabled"><table><tbody><tr><td><span id="multi_level1_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 1</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level1_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel1_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel1_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel1_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel1_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel1_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel1"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level1_buy" class=""><button id="multiBuyBtn_level1">UNLOCK (0.02 ETH)</button></span><hr></div><div id="multi_level2" class="disabled hide"><table><tbody><tr><td><span id="multi_level2_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 2</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level2_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel2_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel2_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel2_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel2_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel2_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel2"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level2_buy" class="hide"><button id="multiBuyBtn_level2">UNLOCK (0.04 ETH)</button></span><hr></div><div id="multi_level3" class="disabled hide"><table><tbody><tr><td><span id="multi_level3_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 3</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level3_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel3_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel3_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel3_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel3_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel3_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel3"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level3_buy" class="hide"><button id="multiBuyBtn_level3">UNLOCK (0.08 ETH)</button></span><hr></div><div id="multi_level4" class="disabled hide"><table><tbody><tr><td><span id="multi_level4_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 4</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level4_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel4_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel4_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel4_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel4_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel4_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel4"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level4_buy" class="hide"><button id="multiBuyBtn_level4">UNLOCK (0.16 ETH)</button></span><hr></div><div id="multi_level5" class="disabled hide"><table><tbody><tr><td><span id="multi_level5_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 5</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level5_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel5_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel5_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel5_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel5_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel5_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel5"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level5_buy" class="hide"><button id="multiBuyBtn_level5">UNLOCK (0.32 ETH)</button></span><hr></div><div id="multi_level6" class="disabled hide"><table><tbody><tr><td><span id="multi_level6_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 6</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level6_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel6_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel6_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel6_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel6_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel6_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel6"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level6_buy" class="hide"><button id="multiBuyBtn_level6">UNLOCK (0.64 ETH)</button></span><hr></div><div id="multi_level7" class="disabled hide"><table><tbody><tr><td><span id="multi_level7_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 7</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level7_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel7_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel7_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel7_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel7_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel7_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel7"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level7_buy" class="hide"><button id="multiBuyBtn_level7">UNLOCK (1.28 ETH)</button></span><hr></div><div id="multi_level8" class="disabled hide"><table><tbody><tr><td><span id="multi_level8_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 8</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level8_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel8_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel8_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel8_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel8_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel8_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel8"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level8_buy" class="hide"><button id="multiBuyBtn_level8">UNLOCK (2.56 ETH)</button></span><hr></div><div id="multi_level9" class="disabled hide"><table><tbody><tr><td><span id="multi_level9_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 9</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level9_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel9_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel9_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel9_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel9_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel9_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel9"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level9_buy" class="hide"><button id="multiBuyBtn_level9">UNLOCK (5.12 ETH)</button></span><hr></div><div id="multi_level10" class="disabled hide"><table><tbody><tr><td><span id="multi_level10_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 10</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level10_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel10_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel10_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel10_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel10_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel10_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel10"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level10_buy" class="hide"><button id="multiBuyBtn_level10">UNLOCK (10.24 ETH)</button></span><hr></div><div id="multi_level11" class="disabled hide"><table><tbody><tr><td><span id="multi_level11_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 11</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level11_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel11_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel11_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel11_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel11_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel11_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel11"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level11_buy" class="hide"><button id="multiBuyBtn_level11">UNLOCK (20.48 ETH)</button></span><hr></div><div id="multi_level12" class="disabled hide"><table><tbody><tr><td><span id="multi_level12_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 12</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="multi_level12_earned">-</span></h5></td></tr> <tr><td><span id="multi_idOfLevel12_1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel12_1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td></tr> <tr><td><span id="multi_idOfLevel12_2_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_idOfLevel12_2_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td><td><span id="multi_idOfLevel12_2_3" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span><span id="multi_refOfLevel12"><img src="img/refresh.png"></span></td></tr></tbody></table><span id="multi_level12_buy" class="hide"><button id="multiBuyBtn_level12">UNLOCK (40.96 ETH)</button></span><hr></div></div>
+        </div>
+    </div>
+
+</div>
+<div id="loader">
+    <img src="img/loader-wallet.png">
+</div>
+<script>
+	var summitEthContract;var summitEthContract 
+$(function() {
+
+
+	var direct_matrix_friends_by_level = new Array(12);
+	var direct_matrix_reinvests_by_level = new Array(12);
+	var direct_matrix_missed_by_level = new Array(12);
+	var direct_matrix_extra_by_level = new Array(12);
+
+
+	var multi_matrix_friends_by_level = new Array(12);
+	var multi_matrix_reinvests_by_level = new Array(12);
+	var multi_matrix_missed_by_level = new Array(12);
+	var multi_matrix_extra_by_level = new Array(12);
+	
+
+	var direct_earnings_by_level = new Array(12);
+	var multi_earnings_by_level = new Array(12);
+	var totalEarnings = new BigNumber(0);
+	for(let c=0; c< 12;c++) {
+		direct_matrix_friends_by_level[c] = [];
+		multi_matrix_friends_by_level[c] = [];
+		direct_matrix_reinvests_by_level[c] = [];
+		multi_matrix_reinvests_by_level[c] = [];
+		direct_matrix_missed_by_level[c] = [];
+		multi_matrix_missed_by_level[c] = [];
+		direct_matrix_extra_by_level[c] = [];
+		multi_matrix_extra_by_level[c] = []
+
+		direct_earnings_by_level[c] = new BigNumber(0);
+		multi_earnings_by_level[c] = new BigNumber(0);
+	}
+	var TOKEN_DECIMALS = 1e18;
+	var currentETHbalance = 0;
+	var summitEthConn;
+	
+	
+	var summitServer = "wss://mainnet.infura.io/ws/v3/8d8fc8f952d54c358dad23a1caff3be2";
+	var summitEthContractAddr = "0xECEf7987cC0585C9594c2460ca9f83b22FfaB933";
+	var defAcc = "0x9221E96fa80104162D6f5aaBB6BBDEf27bE5958f";
+	
+	var showLoader = function(s) {
+		$("#loader").show();
+		if(s != "") {
+			$("#loader > img").attr("src", "img/loader-" + s + ".png");
+		}
+	};
+	
+	var hideLoader = function() {
+		$("#loader").hide();
+	};
+	
+	showLoader("wallet");
+	
+	summitEthProvider = new Web3.providers.WebsocketProvider(summitServer);
+	
+	var userId = getUrlParameter('user')||"";
+	
+	summitEthProvider.on('connect',function(e){
+	
+		summitEthConn = new Web3(summitEthProvider);
+		summitEthContract = new summitEthConn.eth.Contract(summitAbi.abi, summitEthContractAddr);
+		hideLoader();
+		if(userId != "") {
+			$("#inpSearch").val(userId);
+			$("#btnSearch").click();
+		}
+	
+	});
+	
+	
+	function getDetails() {
+		
+	}
+	
+	$("#btnSearch").on("click", function(e) {
+		var t = $("#inpSearch").val();
+		// check if valid
+		if(t=="") return;
+        if(is_url(t)) {
+            if(t.indexOf("user=") >= 0) {
+                t = t.substr(t.indexOf("user=") + 5);
+            } else {
+				// invalid!
+				return;
+            }
+        }
+        try {
+            const address = Web3.utils.toChecksumAddress(t);
+        } catch(e) {
+			if((t-117) <= 1) return; // invalid
+			t-=117;
+			// must be an ID
+			summitEthContract.methods.idToAddress(t).call(function(e, res){
+				if(res!="0x0000000000000000000000000000000000000000") {
+					usrWalletAddress = res;
+					processUser();
+				}
+			});
+			return;
+        }
+		usrWalletAddress = t;
+        processUser();
+	});
+	
+	function processUser() {
+		try {
+			populateEarnings(1);
+			populateDirectLevels(1);
+		} catch(e) {
+			console.log(e);
+		}
+	}
+	var usrWalletAddress;
+	var web3Provider = new Web3(window.web3.currentProvider);
+	//summitEthContract = new web3Provider.eth.Contract(summitAbi.abi, summitEthContractAddr);
+	
+
+	function populateDirectLevels(level){
+		summitEthContract.methods.usersActiveDirectLevels(usrWalletAddress,level).call(function(_err, _result){
+			console.log(usrWalletAddress);
+			console.log("populateDirectLevels:", _result);
+			if(_result == true){
+				// level is open
+				$('#direct_level' + level + '_stats').removeClass('hide');
+
+				$('#direct_level' + level + '_buy').removeClass('hide');
+				$('#direct_level' + level + '_buy').addClass('hide');
+
+				// $('#direct_level' + level + '_matrix').removeClass('disabled2');
+				$('#direct_level' + level).removeClass('hide');
+				$('#direct_level' + level).removeClass('disabled');
+
+				summitEthContract.methods.usersDirectMatrix(usrWalletAddress, level).call(function(_err, _results){
+
+					// referrer = _results.[0]
+					
+					summitEthContract.methods.users(_results[0]).call(function(_err, _result){
+						
+						if(!_err){
+                            
+                            var t = Number(_result.id);
+                            
+                            // mask
+                            //if(t == 1 && userId > 20) t = Math.round((userId+level)/2+(userId/7)+(level*2));
+                            
+							$('#direct_level' + level + '_referrer').html(t+117);
+							//$('#direct_level' + level + '_referrer').attr("title", "Current Referrer ID:" + t + "," + " Addr:" + _results[0]);
+							$('#direct_level' + level + '_referrer').attr("title", "Current Referrer ID:" + (t+117));
+						}
+					});
+					
+
+					if(_results[2] == true) {
+						$('#direct_level' + level).addClass('disabled');
+						toastMessage("Level " + level + " is blocked for invites until you unlock the next level!", "Upgrade needed", 30000);
+					}
+					for(let c=0; c< _results[1].length; c++) {
+						summitEthContract.methods.users(_results[1][c]).call(function(_err, _result){
+							$('#direct_idOfLevel' + level + '_' + Number(c+1)).html(Number(_result.id)+117);
+							$('#direct_idOfLevel' + level + '_' + Number(c+1)).attr("title", " Addr:" + _results[1][c]);
+						});
+					}
+
+					if(level < 13)
+						populateDirectLevels(level+1);
+					else
+						populateMultiLevels(1);
+				});				
+			} else {
+				// just disable
+				$('#direct_level' + level).removeClass('hide');
+				$('#direct_level' + level).removeClass('disabled');
+				$('#direct_level' + level).addClass('disabled');
+				$('#direct_level' + level + '_stats').removeClass('hide');
+				$('#direct_level' + level + '_stats').addClass('hide');
+//direct_level2_buy
+				$('#direct_level' + level + '_buy').removeClass('hide');
+
+				// $('#direct_level' + level + '_matrix').removeClass('disabled2');
+				// $('#direct_level' + level + '_matrix').addClass('disabled2');
+				// hide next levels
+				for(let c=Number(level+1); c< 13; c++) {
+					$('#direct_level' + c).removeClass('hide');
+					$('#direct_level' + c).removeClass('disabled');
+					$('#direct_level' + c).addClass('disabled');
+					$('#direct_level' + c).addClass('hide');
+                    //$('#direct_level' + c + '_buy').removeClass('hide');
+				}
+				populateMultiLevels(1);
+			}
+		});
+
+	}
+
+	function populateMultiLevels(level){
+		summitEthContract.methods.usersActiveMultiLevels(usrWalletAddress,level).call(function(_err, _result){
+            console.log("populateMultiLevels:", _result);
+			if(_result == true){
+				// level is open
+				$('#multi_level' + level + '_stats').removeClass('hide');
+
+				$('#multi_level' + level + '_buy').removeClass('hide');
+				$('#multi_level' + level + '_buy').addClass('hide');
+				//$('#multi_level' + level + '_matrix').removeClass('disabled2');
+				$('#multi_level' + level).removeClass('disabled');
+				$('#multi_level' + level).removeClass('hide');
+
+				summitEthContract.methods.usersMultiMatrix(usrWalletAddress, level).call(function(_err, _results){
+
+					// referrer = _results.[0]
+					
+					summitEthContract.methods.users(_results[0]).call(function(_err, _result){
+						
+						if(!_err){
+                            
+                            var t = Number(_result.id);
+                            
+                            // mask
+                            //if(t == 1 && userId > 20) t = Math.round((userId+level)/2+(userId/7)+(level*2));
+                            
+							$('#multi_level' + level + '_referrer').html(t+117);
+							$('#multi_level' + level + '_referrer').attr("title", "Current Referrer ID:" + (t+117));
+						}
+					});
+					
+
+					if(_results[3] == true) {
+						$('#multi_level' + level).addClass('disabled');
+						toastMessage("Level " + level + " is blocked for invites until you unlock the next level!", "Upgrade needed", 30000);
+					}
+					for(let c=0; c< _results[1].length; c++) {
+						// sub level 1
+						summitEthContract.methods.users(_results[1][c]).call(function(_err, _result){
+							$('#multi_idOfLevel' + level + '_1_' + Number(c+1)).html(Number(_result.id)+117);
+							$('#multi_idOfLevel' + level + '_1_' + Number(c+1)).attr("title", " Addr:" + _results[1][c]);
+						});
+						
+					}
+
+					for(let c=0; c< _results[2].length; c++) {
+						// sub level 2
+						summitEthContract.methods.users(_results[2][c]).call(function(_err, _result){
+							$('#multi_idOfLevel' + level + '_2_' + Number(c+1)).html(Number(_result.id)+117);
+							$('#multi_idOfLevel' + level + '_2_' + Number(c+1)).attr("title", " Addr:" + _results[2][c]);
+						});
+						
+					}
+
+
+					if(level < 13)
+						populateMultiLevels(level+1);
+
+				});				
+			} else {
+				// just disable
+				$('#multi_level' + level).removeClass('hide');
+				$('#multi_level' + level).removeClass('disabled');
+				$('#multi_level' + level).addClass('disabled');
+				$('#multi_level' + level + '_stats').removeClass('hide');
+				$('#multi_level' + level + '_stats').addClass('hide');
+				$('#multi_level' + level + '_buy').removeClass('hide');
+				//$('#multi_level' + level + '_matrix').removeClass('disabled2');
+				//$('#multi_level' + level + '_matrix').addClass('disabled2');
+				// hide next levels
+				for(let c=Number(level+1); c< 13; c++) {
+					$('#multi_level' + c).removeClass('disabled');
+					$('#multi_level' + c).removeClass('hide');
+					$('#multi_level' + c).addClass('disabled');
+					$('#multi_level' + c).addClass('hide');
+                    //$('#multi_level' + c + '_buy').removeClass('hide');
+				}
+			}
+		});
+
+	}
+	
+	
+
+	function populateEarnings(level) {
+		summitEthContract.methods.userEarnings(usrWalletAddress,level).call(function(_err, _result){
+			if(!_err){
+				
+				direct_earnings_by_level[Number(level-1)] = new BigNumber(_result.directMatrixEarnings);
+				multi_earnings_by_level[Number(level-1)] = new BigNumber(_result.multiMatrixEarnings);	
+				totalEarnings = totalEarnings.plus(new BigNumber(_result.directMatrixEarnings));
+				totalEarnings = totalEarnings.plus(new BigNumber(_result.multiMatrixEarnings));
+				$('#direct_level' + level + '_earned').html(direct_earnings_by_level[Number(level-1)].div(TOKEN_DECIMALS).toFixed(8));
+				$('#multi_level' + level + '_earned').html(multi_earnings_by_level[Number(level-1)].div(TOKEN_DECIMALS).toFixed(8));
+				if(level < 13){
+					populateEarnings(level+1);
+				} else {
+					//$('#inpMatrixEarnings').val(totalEarnings.div(TOKEN_DECIMALS).toFixed(8) + " ETH ($" + _usd.toFixed(2) + ")");
+					$('#inpMatrixEarnings_ETH').val(totalEarnings.div(TOKEN_DECIMALS).toFixed(8) + " ETH");
+				}
+			}
+			
+		});
+	}
+	
+
+
+	function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+			sURLVariables = sPageURL.split('&'),
+			sParameterName,
+			i;
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	};
+	function isAddress(address) {
+		return (/^(0x){1}[0-9a-fA-F]{40}$/i.test(address));
+	}
+    function is_url(str) {
+        var regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+        if (regexp.test(str)) {
+            return true;
+        } else {
+          return false;
+        }
+    }
+
+
+});
+</script>
+</body>
+</html>
