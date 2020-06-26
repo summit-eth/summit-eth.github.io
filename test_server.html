@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-us" class="">
+<head>
+<meta charset="utf-8">
+<title>SummitETH - Invest in your Ethereum!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://summit-eth.com">
+<meta property="og:title" content="SummitETH - Invest in your Ethereum!">
+<meta property="og:description" content="SummitETH is a Smart Contract Crypto earnings system that you work from home at your own leisure. Invite your friends and family and grow your Ethereum network!">
+<meta property="og:image" content="http://summit-eth.com/static/graph-02.jpg">
+<meta property="og:image:width" content="512px">
+<meta property="og:image:height" content="250px">
+<link rel="stylesheet" href="css/reset.min.css">
+<link rel="stylesheet" href="css/bundle.min.css?ver=1.0.0">
+<link rel="stylesheet" href="css/jquery.toast.min.css?ver=1.0.0">
+<link rel="stylesheet" href="fonts/fonts.min.css?ver=1.0.0">
+<script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div id="crypto-info">
+    BTC/USD: <span id="infBTC">...</span>$ | ETH/USD: <span id="infETH">...</span>$
+</div>
+<div id="page-landing">
+    <div class="container centered">
+        <img class="landing-logo" src="img/logo-transparent.png">
+        <img class="landing-header" src="img/header.png">
+        <div class="form hide" id="regDiv">
+            <h3>your referrer: please double check!</h3>
+            <input id="inpReferrer" type="text" value="">
+        </div>
+        <button id="btnConnect">connect wallet</button>
+        <button id="btnVerify">Verify referrer</button>
+        <button id="btnReg">Join (0.04 ETH)</button>
+        <button id="btnHow">How to join?</button>
+        <hr style="max-width: 300px; margin: 16px auto">
+        <button id="btnViewFaq">FAQs</button>
+        <button id="btnViewGuides">Guide</button>
+        <div id="page-footer">
+            Summit-ETH is a decentralized app(DApp) running on the Ethereum network. <br> The site administrators DO NOT own the Summit-ETH project.
+            <br>
+            <b style="font-weight: 700">&copy; http://Summit-ETH.com 2020</b>
+        </div>
+    </div>
+</div>
+<div id="page-faq">
+    <div class="container">
+        <div id="faqButtonClose" class="centered"><img src="img/arrow.png"></div>
+        <div class="async_page">
+        </div>
+    </div>
+</div>
+<div id="page-guide">
+    <div class="container">
+        <div id="guideButtonClose" class="centered"><img src="img/arrow.png"></div>
+        <div class="paper">
+            <button onclick="top.location.href='https://summit-eth.com/guide'">Full Guide</button>
+            <button onclick="top.location.href='https://summit-eth.com/howto'" style="margin-top: 16px">HOW TO JOIN</button>
+            <button onclick="top.location.href='https://summit-eth.com/static/guide.pdf'" style="margin-top: 16px">Quick Guide.PDF</button>
+            <!--a href="guide" class="btn" style="line-height: 32px; border-radius: 8px; padding: 8px">Full guide:<br>https://summit-eth.com/guide</a><hr>
+            <a href="howto" class="btn" style="line-height: 32px; border-radius: 8px; padding: 8px">ETH Wallet Setup<br>https://summit-eth.com/howto</a-->
+            <hr>
+            <br>
+            <img src="img/guide-001_lowdpi.png" onclick="(this.width==1024)?$(this).css({maxWidth:'100%'}):$(this).css({maxWidth:'1024px'})">
+            <br>
+            <img src="img/guide-002_lowdpi.png" onclick="(this.width==1024)?$(this).css({maxWidth:'100%'}):$(this).css({maxWidth:'1024px'})">
+            <br>
+            <img src="img/guide-003_lowdpi.png" onclick="(this.width==1024)?$(this).css({maxWidth:'100%'}):$(this).css({maxWidth:'1024px'})">
+        </div>
+    </div>
+</div>
+<div id="page-account">
+
+    <div class="container">
+        <div class="info">
+            <button id="btnLogout">log out</button>
+            <h3>your id number:</h3>
+            <input id="inpUserId" type="text" value="..." readonly><br>
+            <h3>your referrer:</h3>
+            <input id="inpReferrer2" type="text" value="..." readonly><br>
+            <h3>your wallet address:</h3>
+            <input id="inpUserAddress" type="text" value="..." readonly>
+        </div>
+        <div class="hero">
+            <h3>your matrix earnings</h3><sup>$</sup>
+            <input id="inpMatrixEarnings" type="text" value="" readonly>
+            <input id="inpMatrixEarnings_ETH" type="text" value="fetching data..." readonly>
+        </div>
+        <hr style="border-color: #121212; margin: 24px 16px 16px 16px;">
+        <div class="form">
+            <button id="btnViewGuide">guide</button>
+            <button id="btnViewFaqs">faqs</button>
+        </div>
+        <div class="form">
+            <h3>your invite url:</h3>
+            <input id="inpInviteUrl" type="text" value="..." readonly>
+            <button id="btnCopyInvite">copy</button>
+        </div>
+        <div class="form">
+            <h3>Available Shares:</h3>
+            <input id="inpShareAmount" type="text" value="..." readonly>
+            <button class="blockBtn" id="btnWithdraw">withdraw</button>
+        </div>
+    </div>
+    
+    
+    <div id="page-header">
+        <div class="container">
+            <button id="btnDirectPage">DIRECT</button><button id="btnMultiPage">MULTI</button>
+        </div>
+    </div>
+    
+    <div id="page-matrix">
+        <div id="page-direct">
+            <div class="container centered">
+                <div class="info">
+                    <h1> Direct Matrix</h1>
+                    <table>
+                        <tr><td colspan="2">Quick Guide:</td></tr>
+                        <tr><td><img src="img/guide/superior.png"></td><td>the ID of your superior</td></tr>
+                        <tr><td><img src="img/guide/eth-earned.png"></td><td>total ETH earned for the current level</td></tr>
+                        <tr><td><img src="img/guide/direct-downlines.png"></td><td>2 slots for your invites</td></tr>
+                        <tr><td><img src="img/guide/direct-reinvest.png"></td><td>3rd slot for reinvestment</td></tr>
+                    </table>
+                </div>
+                <br><br>
+                <hr>
+            </div>
+        </div>    
+        <div id="page-multi">
+            <div class="container centered">
+                <div class="info">
+                    <h1> Multilevel Matrix</h1>
+                    <table>
+                        <tr><td colspan="2">Quick Guide:</td></tr>
+                        <tr><td><img src="img/guide/superior.png"></td><td>the ID of your superior</td></tr>
+                        <tr><td><img src="img/guide/eth-earned.png"></td><td>total ETH earned for the current level</td></tr>
+                        <tr><td><img src="img/guide/multi-level1.png"></td><td>2 slots for your invites/spills. you cannot earn from these slots</td></tr>
+                        <tr><td><img src="img/guide/multi-level2.png"></td><td>3 slots for your invites/spills. you will earn from these slots!</td></tr>
+                        <tr><td><img src="img/guide/direct-reinvest.png"></td><td>4th slot for reinvestment</td></tr>
+                    </table>
+                </div>
+                <br><br>
+                <hr>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div id="loader">
+    <img src="img/loader-wait.png">
+</div>
+<script src="js/web3.min.js"></script>
+<script src="js/js.cookie.min.js"></script>
+<script src="js/jquery.toast.min.js"></script>
+<script src="js/bignumber.min.js"></script>
+<script src="js/summit.abi.js?ver=1.0.0"></script>
+<script src="js/summit_test.min.js?ver=1.0.0"></script>
+</body>
+</html>
