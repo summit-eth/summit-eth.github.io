@@ -1,0 +1,412 @@
+* {
+	font-family: "Proxima Nova";
+	box-sizing: border-box;
+	color: white;
+}
+
+html, body {
+    background: #121212;
+    background: linear-gradient(35deg, #33422f 0%, #22322f 100%);
+}
+
+#loader {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #121212;
+	background-image: url("../img/header-small.png");
+	background-repeat: no-repeat;
+	background-size: 72px auto;
+	background-position: bottom right;
+	text-align: center;
+	z-index: 1000;
+}
+
+#loader img {
+	position: absolute;
+	width: 200px;
+	top: 50%;
+	left: 50%;
+	margin-top: -16px;
+	margin-left: -100px;
+	animation: fading 2s;
+	animation-iteration-count: infinite;
+	opacity: 0.5;
+}
+
+@keyframes fading {
+	0% { opacity: 0.5 }
+	60% { opacity: 1 }
+	75% { opacity: 0.5 }
+	100% { opacity: 0.5 }
+}
+
+#header {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+#header #search {
+	position: relative;
+	max-width: 800px;
+	text-align: center;
+}
+
+#search input {
+	width: 300px;
+	padding: 4px 8px;
+	font-size: 16px;
+	background: rgba(0, 0, 0, .5);
+	border-radius: 8px;
+	border: thin solid #17b872;
+	display: block;
+	margin: 32px auto 16px auto;
+}
+
+#search button {
+	display: block;
+	margin: 0 auto;
+	background: #045545;
+    background: linear-gradient(35deg, #045545 0%, #17b872 100%);
+	border: none;
+	border-radius: 32px;
+	padding: 8px;
+	font-size: 32px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+#search button:hover {
+	opacity: .8;
+}
+
+#main {
+	position: relative;
+	margin: 32px auto 32px;
+	max-width:1024px;
+}
+button:hover {
+    opacity: .8;
+}
+
+.hide {
+	display: none !important;
+}
+
+.container {
+    position: relative;
+    margin: 0px auto;
+}
+
+.centered {
+    text-align: center;
+}
+
+
+#page-multi .container > div.disabled > table,
+#page-direct .container > div.disabled > table {
+	filter: grayscale(100%);
+    opacity: 0.25;
+}
+
+#page-multi .container > div,
+#page-direct .container > div {
+	display: inline-block;
+	margin: 16px;
+	position: relative;
+}
+#page-multi .container > div > span > button {
+	margin-top: -30px;
+	display:none;
+}
+#page-direct .container > div > span > button {
+	margin-top: 1px;
+	display: none;
+}
+#page-multi .container > div > span > button,
+#page-direct .container > div > span > button {
+	position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-left: -60px;
+    margin-top: -20px;
+    font-size: 12px;
+    width: 140px;
+    padding: 4px 8px;
+    line-height: 32px;
+}
+
+
+#page-matrix {
+    z-index: 11;
+    position: relative;
+    background: linear-gradient(35deg, #045545 0%, #17b872 100%);
+    border-radius: 16px;
+    box-shadow: 0px -4px 16px 4px rgba(0, 0, 0, .5);
+    margin-bottom: 32px;
+}
+
+
+#page-multi > div > .info,
+#page-direct > div > .info {
+    text-align: left;
+    width: auto;
+}
+#page-multi > div > .info h1,
+#page-direct > div > .info h1 {
+    font-size: 24px;
+}
+#page-multi > div > .info table,
+#page-direct > div > .info table {
+    height: auto;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: 480px !important;
+    margin: 16px 0;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 16px;
+    padding: 8px;
+}
+#page-multi > div > .info table tr:first-child td:first-child,
+#page-direct > div > .info table tr:first-child td:first-child {
+    text-align: center !important;
+}
+#page-multi > div > .info table td:first-child,
+#page-direct > div > .info table td:first-child {
+    text-align: right !important;
+    padding-right: 8px;
+}
+
+#page-multi > div > .info table td:nth-child(2),
+#page-direct > div > .info table td:nth-child(2) {
+    text-align: left !important;
+}
+#page-multi > div > .info table td,
+#page-direct > div > .info table td {
+    width: calc(100%/2) !important;
+    min-width: calc(100%/2) !important;
+    max-width: calc(100%/2) !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    background: none !important;
+}
+#page-multi > div > .info table img,
+#page-direct > div > .info table img {
+    max-height: 30px;
+    vertical-align: bottom;
+}
+
+#page-multi,
+#page-direct {
+	/*background-image: url("../img/header-small.png");
+	background-size: 10%;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	background-attachment: fixed;*/
+	padding: 16px;
+    z-index: 5;
+}
+
+	#page-direct .container { }
+	
+	#page-multi h3,
+	#page-multi h5,
+	#page-direct h3,
+	#page-direct h5 {
+	}
+	#page-direct h5 {
+    }
+    #page-direct h5 span {
+        display: block;
+    }
+	#page-direct table {
+		border-collapse: collapse;
+		width: 150px;
+		height: 125px;
+	}
+	#page-direct table tr { }
+	#page-direct table tr td {
+		min-width: calc(150px/2);
+		max-width: calc(150px/2);
+        line-height: calc(125px/6);
+        min-height: calc(125px/6);
+        max-height: calc(125px/6);
+		border: none;
+		font-weight: 700;
+		color: white;
+		font-size: 12px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+	#page-direct table tr:nth-child(1) td:nth-child(1) {
+        background: rgba(255, 255, 255, .25);
+        background-image: url("../img/up-arrow.png");
+        background-position: top right;
+        background-repeat: no-repeat;
+        background-size: 24px 18px;
+        text-align: left;
+        padding-left: 4px;
+    }
+	#page-direct table tr:nth-child(2) td:nth-child(1) {
+        background: #13343b;
+        background: linear-gradient(-35deg, #13343b 0%, #037785 100%);
+        padding-left: 8px;
+        border-radius: 0 8px 0 0;
+        text-align: left;
+        padding-left: 4px;
+    }
+	#page-direct table tr:nth-child(2) td:nth-child(1) > h3 {
+        color: #93bcc2;
+    }
+	#page-direct table tr:nth-child(3) td:nth-child(1) {
+        background: #037785;
+        background: linear-gradient(-155deg, #13343b 0%, #037785 100%);
+        border-radius: 0 0 8px 8px;
+    }
+	#page-direct table tr:nth-child(4) td > span {
+        background: #509bf5;
+        background: linear-gradient(125deg, #13343b 0%, #037785 100%);
+    }
+	#page-direct table tr:nth-child(4) td > span{
+        margin-top: 8px;
+        margin-left: 4px;
+        margin-right: 4px;
+        border-radius: 10px;
+        display: inline-block;
+        min-width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+	#page-direct table tr:nth-child(4) td > span > img {
+        width: 20px;
+        height: 20px;
+        vertical-align: bottom;
+    }
+	
+    @media (max-width: 1024px) {
+            
+        #page-direct table {
+            display: inline-block;
+            max-width: 130px;
+        }
+        #page-matrix {
+            margin-bottom: 0px;
+            padding-bottom: 16px;
+        }
+    }
+    
+	#page-direct table tr:nth-child(1) td > span:hover,
+	#page-multi table tr:nth-child(1) td > span:hover,
+	#page-direct table tr:nth-child(4) td > span:hover,
+	#page-multi table tr:nth-child(4) td > span:hover,
+	#page-multi table tr:nth-child(5) td > span:hover {
+		opacity: .8;
+	}
+	#page-direct table tr:nth-child(1) td > span,
+	#page-multi table tr:nth-child(1) td > span,
+	#page-direct table tr:nth-child(4) td > span,
+	#page-multi table tr:nth-child(4) td > span,
+	#page-multi table tr:nth-child(5) td > span {
+		cursor: pointer;
+	}
+    
+
+#page-multi { }
+
+	#page-multi .container { }
+	
+	#page-multi h3,
+	#page-multi h5 { }
+    
+	#page-multi h5 {
+    }
+    #page-multi h5 span {
+        display: block;
+    }
+	#page-multi table {
+		border-collapse: collapse;
+		width: 150px;
+		height: 150px;
+	}
+	#page-multi table tr { }
+	#page-multi table tr td {
+		min-width: calc(150px/2);
+		max-width: calc(150px/2);
+        line-height: calc(150px/6);
+        min-height: calc(150px/6);
+        max-height: calc(150px/6);
+		border: none;
+		font-weight: 700;
+		color: white;
+		font-size: 12px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+	#page-multi table tr:nth-child(1) td:nth-child(1) {
+        background: rgba(255, 255, 255, .25);
+        background-image: url("../img/up-arrow.png");
+        background-position: top right;
+        background-repeat: no-repeat;
+        background-size: 24px 18px;
+        text-align: left;
+        padding-left: 4px;
+    }
+	#page-multi table tr:nth-child(2) td:nth-child(1) {
+        background: #13343b;
+        background: linear-gradient(-35deg, #13343b 0%, #037785 100%);
+        padding-left: 8px;
+        border-radius: 0 8px 0 0;
+        text-align: left;
+        padding-left: 4px;
+    }
+	#page-multi table tr:nth-child(2) td:nth-child(1) > h3 {
+        color: #93bcc2;
+    }
+	#page-multi table tr:nth-child(3) td:nth-child(1) {
+        background: #037785;
+        background: linear-gradient(-155deg, #13343b 0%, #037785 100%);
+        border-radius: 0 0 8px 8px;
+    }
+	#page-multi table tr:nth-child(4) td > span {
+        background: #e9302b;
+        background: linear-gradient(23deg, #e9302b 0%, #b01318 100%);
+    }
+	#page-multi table tr:nth-child(5) td > span {
+        background: #509bf5;
+        background: linear-gradient(125deg, #13343b 0%, #037785 100%);
+    }
+	#page-multi table tr:nth-child(4) td > span,
+	#page-multi table tr:nth-child(5) td > span {
+        margin-left: 4px;
+        margin-right: 4px;
+        border-radius: 10px;
+        display: inline-block;
+        min-width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+	#page-multi table tr:nth-child(5) td > span > img {
+        width: 20px;
+        height: 20px;
+        vertical-align: bottom;
+    }
+	
+    @media (max-width: 1024px) {
+            
+        #page-multi table {
+            display: inline-block;
+            max-width: 130px;
+        }
+    }
+    
+    
