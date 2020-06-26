@@ -36,7 +36,7 @@
             <div id="direct_level1" class="disabled">
 			<table><tbody><tr><td><span id="direct_level1_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td>
 			<td>&nbsp;</td></tr><tr><td colspan="2"><h3>LEVEL 1</h3></td></tr><tr><td colspan="2"><h5>ETH earned: <span id="direct_level1_earned">-</span></h5></td></tr>
-			<tr><td><span id="direct_idOfLevel1_1">-</span> <span id="direct_idOfLevel1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span>
+			<tr><td><span id="direct_idOfLevel1_1" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span> <span id="direct_idOfLevel1_2" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span>
 			</td><td><span id="direct_refOfLevel1"><img src="img/refresh.png"></span></td></tr></tbody></table>
 			<span id="direct_level1_buy" class=""><button id="directBuyBtn_level1">UNLOCK (0.02 ETH)</button></span><hr></div>
 			<div id="direct_level2" class="disabled hide"><table><tbody><tr><td><span id="direct_level2_referrer" onclick="top.location.href=top.location.origin+top.location.pathname+'?user='+this.innerHTML">-</span></td>
@@ -147,17 +147,15 @@ $(function() {
 		hideLoader();
 		if(userId != "") {
 			$("#inpSearch").val(userId);
-			$("#btnSearch").click();
+			getDetails();
 		}
 	
 	});
 	
 	
-	function getDetails() {
-		
-	}
 	
-	$("#btnSearch").on("click", function(e) {
+	
+	function getDetails() {
 		var t = $("#inpSearch").val();
 		// check if valid
 		if(t=="") return;
@@ -185,6 +183,37 @@ $(function() {
         }
 		usrWalletAddress = t;
         processUser();
+	}
+	
+	$("#btnSearch").on("click", function(e) {
+		
+		var t = $("#inpSearch").val();
+		// check if valid
+		if(t=="") return;
+        if(is_url(t)) {
+            if(t.indexOf("user=") >= 0) {
+                t = t.substr(t.indexOf("user=") + 5);
+            } else {
+				// invalid!
+				return;
+            }
+        }
+        try {
+            const address = Web3.utils.toChecksumAddress(t);
+        } catch(e) {
+			if((t-117) <= 1) return; // invalid
+			t-=117;
+			// must be an ID
+			summitEthContract.methods.idToAddress(t).call(function(e, res){
+				if(res!="0x0000000000000000000000000000000000000000") {
+					usrWalletAddress = res;
+					top.location.href = top.location.origin + top.location.pathname + "?user=" + usrWalletAddress;
+				}
+			});
+			return;
+        }
+		usrWalletAddress = t;
+        top.location.href = top.location.origin + top.location.pathname + "?user=" + usrWalletAddress;
 	});
 	
 	function processUser() {
@@ -242,7 +271,7 @@ $(function() {
 					for(let c=0; c< _results[1].length; c++) {
 						summitEthContract.methods.users(_results[1][c]).call(function(_err, _result){
 							$('#direct_idOfLevel' + level + '_' + Number(c+1)).html(Number(_result.id)+117);
-							$('#direct_idOfLevel' + level + '_' + Number(c+1)).attr("title", " Addr:" + _results[1][c]);
+							$('#direct_idOfLevel' + level + '_' + Number(c+1)).attr("title", "Addr:" + _results[1][c]);
 						});
 					}
 
