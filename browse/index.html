@@ -217,6 +217,7 @@ $(function() {
 	});
 	
 	function processUser() {
+		if (usrWalletAddress == defAcc) return;
 		try {
 			populateEarnings(1);
 			populateDirectLevels(1);
