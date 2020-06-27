@@ -267,7 +267,7 @@ $(function() {
 
 					if(_results[2] == true) {
 						$('#direct_level' + level).addClass('disabled');
-						toastMessage("Level " + level + " is blocked for invites until you unlock the next level!", "Upgrade needed", 30000);
+						
 					}
 					for(let c=0; c< _results[1].length; c++) {
 						summitEthContract.methods.users(_results[1][c]).call(function(_err, _result){
@@ -341,7 +341,7 @@ $(function() {
 
 					if(_results[3] == true) {
 						$('#multi_level' + level).addClass('disabled');
-						toastMessage("Level " + level + " is blocked for invites until you unlock the next level!", "Upgrade needed", 30000);
+						
 					}
 					for(let c=0; c< _results[1].length; c++) {
 						// sub level 1
